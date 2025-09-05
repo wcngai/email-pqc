@@ -67,6 +67,57 @@ namespace PqcEmail.Core.Interfaces
         /// </summary>
         /// <returns>Performance metrics or null if no operation has been performed</returns>
         PerformanceMetrics? GetLastOperationMetrics();
+
+        /// <summary>
+        /// Performs key encapsulation mechanism (KEM) encapsulation operation.
+        /// </summary>
+        /// <param name="publicKey">The public key for encapsulation</param>
+        /// <param name="kemAlgorithm">The KEM algorithm to use</param>
+        /// <returns>A task that represents the asynchronous KEM encapsulation operation</returns>
+        Task<CryptographicResult<KemEncapsulationResult>> KemEncapsulateAsync(byte[] publicKey, string kemAlgorithm);
+
+        /// <summary>
+        /// Performs key encapsulation mechanism (KEM) decapsulation operation.
+        /// </summary>
+        /// <param name="ciphertext">The ciphertext from encapsulation</param>
+        /// <param name="privateKey">The private key for decapsulation</param>
+        /// <param name="kemAlgorithm">The KEM algorithm to use</param>
+        /// <returns>A task that represents the asynchronous KEM decapsulation operation</returns>
+        Task<CryptographicResult<byte[]>> KemDecapsulateAsync(byte[] ciphertext, byte[] privateKey, string kemAlgorithm);
+    }
+
+    /// <summary>
+    /// Represents the result of a KEM encapsulation operation.
+    /// </summary>
+    public class KemEncapsulationResult
+    {
+        /// <summary>
+        /// Gets the shared secret from the encapsulation.
+        /// </summary>
+        public byte[] SharedSecret { get; }
+
+        /// <summary>
+        /// Gets the ciphertext (encapsulated key) from the encapsulation.
+        /// </summary>
+        public byte[] Ciphertext { get; }
+
+        /// <summary>
+        /// Gets the algorithm used for encapsulation.
+        /// </summary>
+        public string Algorithm { get; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="KemEncapsulationResult"/> class.
+        /// </summary>
+        /// <param name="sharedSecret">The shared secret</param>
+        /// <param name="ciphertext">The ciphertext</param>
+        /// <param name="algorithm">The algorithm used</param>
+        public KemEncapsulationResult(byte[] sharedSecret, byte[] ciphertext, string algorithm)
+        {
+            SharedSecret = sharedSecret ?? throw new ArgumentNullException(nameof(sharedSecret));
+            Ciphertext = ciphertext ?? throw new ArgumentNullException(nameof(ciphertext));
+            Algorithm = algorithm ?? throw new ArgumentNullException(nameof(algorithm));
+        }
     }
 
     /// <summary>

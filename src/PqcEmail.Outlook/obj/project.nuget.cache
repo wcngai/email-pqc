@@ -1,0 +1,64 @@
+{
+  "version": 2,
+  "dgSpecHash": "LFsLydGDAP8=",
+  "success": false,
+  "projectFilePath": "/Users/ngai/Desktop/DEV/ccpm/pqcemail/src/PqcEmail.Outlook/PqcEmail.Outlook.csproj",
+  "expectedPackageFiles": [
+    "/Users/ngai/.nuget/packages/bouncycastle/1.8.9/bouncycastle.1.8.9.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.4/microsoft.extensions.logging.abstractions.6.0.4.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/microsoft.netframework.referenceassemblies/1.0.3/microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/microsoft.netframework.referenceassemblies.net48/1.0.3/microsoft.netframework.referenceassemblies.net48.1.0.3.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/microsoft.office.interop.outlook/15.0.4797.1003/microsoft.office.interop.outlook.15.0.4797.1003.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.io/4.3.0/system.io.4.3.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.memory/4.5.5/system.memory.4.5.5.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.runtime/4.3.0/system.runtime.4.3.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.security.cryptography.algorithms/4.3.0/system.security.cryptography.algorithms.4.3.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.security.cryptography.cng/4.7.0/system.security.cryptography.cng.4.7.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.security.cryptography.encoding/4.3.0/system.security.cryptography.encoding.4.3.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.security.cryptography.primitives/4.3.0/system.security.cryptography.primitives.4.3.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.security.cryptography.x509certificates/4.3.2/system.security.cryptography.x509certificates.4.3.2.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.text.encodings.web/6.0.0/system.text.encodings.web.6.0.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.text.json/6.0.9/system.text.json.6.0.9.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.valuetuple/4.5.0/system.valuetuple.4.5.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package Microsoft.VSTO.Runtime. No packages exist with this id in source(s): nuget.org",
+      "projectPath": "/Users/ngai/Desktop/DEV/ccpm/pqcemail/src/PqcEmail.Outlook/PqcEmail.Outlook.csproj",
+      "filePath": "/Users/ngai/Desktop/DEV/ccpm/pqcemail/src/PqcEmail.Outlook/PqcEmail.Outlook.csproj",
+      "libraryId": "Microsoft.VSTO.Runtime",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.8"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package Microsoft.Office.Tools.Outlook. No packages exist with this id in source(s): nuget.org",
+      "projectPath": "/Users/ngai/Desktop/DEV/ccpm/pqcemail/src/PqcEmail.Outlook/PqcEmail.Outlook.csproj",
+      "filePath": "/Users/ngai/Desktop/DEV/ccpm/pqcemail/src/PqcEmail.Outlook/PqcEmail.Outlook.csproj",
+      "libraryId": "Microsoft.Office.Tools.Outlook",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.8"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package Microsoft.Office.Tools.Common. No packages exist with this id in source(s): nuget.org",
+      "projectPath": "/Users/ngai/Desktop/DEV/ccpm/pqcemail/src/PqcEmail.Outlook/PqcEmail.Outlook.csproj",
+      "filePath": "/Users/ngai/Desktop/DEV/ccpm/pqcemail/src/PqcEmail.Outlook/PqcEmail.Outlook.csproj",
+      "libraryId": "Microsoft.Office.Tools.Common",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.8"
+      ]
+    }
+  ]
+}
