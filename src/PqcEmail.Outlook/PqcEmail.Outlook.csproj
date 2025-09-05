@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <AssemblyTitle>PQC Email Outlook Add-in</AssemblyTitle>
+    <AssemblyDescription>Post-Quantum Cryptography add-in for Microsoft Outlook</AssemblyDescription>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <!-- VSTO Configuration -->
+    <COMVisible>true</COMVisible>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>PqcEmailOutlook.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Office.Interop.Outlook" Version="15.0.4797.1003" />
+    <PackageReference Include="Microsoft.VSTO.Runtime" Version="10.0.60724" />
+    <PackageReference Include="Microsoft.Office.Tools.Outlook" Version="10.0.60825" />
+    <PackageReference Include="Microsoft.Office.Tools.Common" Version="10.0.60825" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PqcEmail.Core\PqcEmail.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Ribbons\" />
+    <Folder Include="Forms\" />
+    <Folder Include="Utilities\" />
+    <Folder Include="EventHandlers\" />
+    <Folder Include="COM\" />
+  </ItemGroup>
+
+</Project>

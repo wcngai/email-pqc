@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customUI onLoad="Ribbon_Load" xmlns="http://schemas.microsoft.com/office/2009/07/customui" xmlns:x="http://schemas.openxmlformats.org/markup-compatibility/2006">
+  <ribbon>
+    <tabs>
+      <tab id="PqcSecurityTab" label="PQC Security" insertAfterMso="TabMessage" keytip="P">
+        <group id="EncryptionGroup" label="Encryption" keytip="E">
+          <button id="ButtonEncrypt"
+                  label="Encrypt"
+                  size="large"
+                  onAction="ButtonEncrypt_Click"
+                  getImage="GetEncryptImage"
+                  screentip="Quantum-Safe Encryption"
+                  supertip="Encrypt this email using post-quantum cryptography (ML-KEM-768) with classical hybrid fallback."
+                  keytip="E" />
+          <button id="ButtonDecrypt"
+                  label="Decrypt"
+                  size="large"
+                  onAction="ButtonDecrypt_Click"
+                  getImage="GetDecryptImage"
+                  screentip="Decrypt PQC Email"
+                  supertip="Decrypt an email that was encrypted using post-quantum cryptography."
+                  keytip="D" />
+        </group>
+        
+        <group id="SignatureGroup" label="Digital Signature" keytip="S">
+          <button id="ButtonSign"
+                  label="Sign"
+                  size="large"
+                  onAction="ButtonSign_Click"
+                  getImage="GetSignImage"
+                  screentip="Quantum-Safe Signature"
+                  supertip="Sign this email using post-quantum digital signatures (ML-DSA-65)."
+                  keytip="S" />
+          <button id="ButtonVerify"
+                  label="Verify"
+                  size="large"
+                  onAction="ButtonVerify_Click"
+                  getImage="GetVerifyImage"
+                  screentip="Verify Signature"
+                  supertip="Verify the quantum-safe digital signature on this email."
+                  keytip="V" />
+        </group>
+        
+        <group id="StatusGroup" label="Security Status" keytip="T">
+          <labelControl id="StatusLabel" 
+                       label="Status:" 
+                       screentip="Current Security Status"
+                       supertip="Shows the current quantum-safe security status of the active email." />
+          <box id="StatusBox" boxStyle="horizontal">
+            <labelControl id="StatusIndicator"
+                         getLabel="GetStatusText"
+                         screentip="Security Status"
+                         supertip="Current quantum-safe protection level for this email." />
+          </box>
+          <separator id="StatusSeparator" />
+          <button id="ButtonSettings"
+                  label="Settings"
+                  size="normal"
+                  onAction="ButtonSettings_Click"
+                  getImage="GetSettingsImage"
+                  screentip="PQC Settings"
+                  supertip="Configure post-quantum cryptography settings and policies."
+                  keytip="T" />
+        </group>
+        
+        <group id="HelpGroup" label="Help" keytip="H">
+          <button id="ButtonHelp"
+                  label="Help"
+                  size="normal"
+                  onAction="ButtonHelp_Click"
+                  getImage="GetHelpImage"
+                  screentip="PQC Help"
+                  supertip="Get help and information about quantum-safe email security."
+                  keytip="H" />
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>

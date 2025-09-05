@@ -1,0 +1,78 @@
+{
+  "version": 2,
+  "dgSpecHash": "DIP/QTrqeII=",
+  "success": true,
+  "projectFilePath": "/Users/ngai/Desktop/DEV/ccpm/pqcemail/src/PqcEmail.Core/PqcEmail.Core.csproj",
+  "expectedPackageFiles": [
+    "/Users/ngai/.nuget/packages/bouncycastle/1.8.9/bouncycastle.1.8.9.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.4/microsoft.extensions.logging.abstractions.6.0.4.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/microsoft.netframework.referenceassemblies/1.0.3/microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/microsoft.netframework.referenceassemblies.net48/1.0.3/microsoft.netframework.referenceassemblies.net48.1.0.3.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.io/4.3.0/system.io.4.3.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.memory/4.5.5/system.memory.4.5.5.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.runtime/4.3.0/system.runtime.4.3.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.security.cryptography.algorithms/4.3.0/system.security.cryptography.algorithms.4.3.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.security.cryptography.cng/4.7.0/system.security.cryptography.cng.4.7.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.security.cryptography.encoding/4.3.0/system.security.cryptography.encoding.4.3.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.security.cryptography.primitives/4.3.0/system.security.cryptography.primitives.4.3.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.security.cryptography.x509certificates/4.3.2/system.security.cryptography.x509certificates.4.3.2.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.text.encodings.web/6.0.0/system.text.encodings.web.6.0.0.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.text.json/6.0.9/system.text.json.6.0.9.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
+    "/Users/ngai/.nuget/packages/system.valuetuple/4.5.0/system.valuetuple.4.5.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'BouncyCastle' 1.8.9 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-8xfc-gm6g-vgpv",
+      "projectPath": "/Users/ngai/Desktop/DEV/ccpm/pqcemail/src/PqcEmail.Core/PqcEmail.Core.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/ngai/Desktop/DEV/ccpm/pqcemail/src/PqcEmail.Core/PqcEmail.Core.csproj",
+      "libraryId": "BouncyCastle",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.8"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'BouncyCastle' 1.8.9 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-m44j-cfrm-g8qc",
+      "projectPath": "/Users/ngai/Desktop/DEV/ccpm/pqcemail/src/PqcEmail.Core/PqcEmail.Core.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/ngai/Desktop/DEV/ccpm/pqcemail/src/PqcEmail.Core/PqcEmail.Core.csproj",
+      "libraryId": "BouncyCastle",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.8"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'BouncyCastle' 1.8.9 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-v435-xc8x-wvr9",
+      "projectPath": "/Users/ngai/Desktop/DEV/ccpm/pqcemail/src/PqcEmail.Core/PqcEmail.Core.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/ngai/Desktop/DEV/ccpm/pqcemail/src/PqcEmail.Core/PqcEmail.Core.csproj",
+      "libraryId": "BouncyCastle",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.8"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'System.Text.Json' 6.0.9 has a known high severity vulnerability, https://github.com/advisories/GHSA-8g4q-xg66-9fp4",
+      "projectPath": "/Users/ngai/Desktop/DEV/ccpm/pqcemail/src/PqcEmail.Core/PqcEmail.Core.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/ngai/Desktop/DEV/ccpm/pqcemail/src/PqcEmail.Core/PqcEmail.Core.csproj",
+      "libraryId": "System.Text.Json",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.8"
+      ]
+    }
+  ]
+}
