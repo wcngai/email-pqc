@@ -4,7 +4,7 @@ status: backlog
 created: 2025-09-04T08:36:44Z
 progress: 0%
 prd: .claude/prds/pqc-email.md
-github: [Will be updated when synced to GitHub]
+github: https://github.com/wcngai/email-pqc/issues/1
 ---
 
 # Epic: pqc-email
@@ -82,14 +82,14 @@ High-level task categories that will be created:
 - **Key Risks**: Algorithm stability, Outlook API changes, performance impact
 
 ## Tasks Created
-- [ ] 001.md - Core Cryptographic Integration (parallel: true)
-- [ ] 002.md - Outlook Add-in Framework (parallel: true)
-- [ ] 003.md - Certificate Management Core (parallel: true)
-- [ ] 004.md - Email Encryption/Decryption Implementation (parallel: false)
-- [ ] 005.md - Capability Discovery Service (parallel: true)
-- [ ] 006.md - Policy Management Engine (parallel: true)
-- [ ] 007.md - Testing & Security Validation (parallel: false)
-- [ ] 008.md - Monitoring & Documentation (parallel: false)
+- [ ] #2 - Core Cryptographic Integration (parallel: true)
+- [ ] #3 - Outlook Add-in Framework (parallel: true)
+- [ ] #4 - Certificate Management Core (parallel: true)
+- [ ] #5 - Email Encryption/Decryption Implementation (parallel: false)
+- [ ] #6 - Capability Discovery Service (parallel: true)
+- [ ] #7 - Policy Management Engine (parallel: true)
+- [ ] #8 - Testing & Security Validation (parallel: false)
+- [ ] #9 - Monitoring & Documentation (parallel: false)
 
 Total tasks: 8
 Parallel tasks: 5
