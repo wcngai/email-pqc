@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  PQC Email Group Policy ADMX Template
+  Defines administrative templates for enterprise deployment of Post-Quantum Cryptography email encryption
+  
+  Registry path: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\PqcEmail
+  
+  Compatible with:
+  - Windows Server 2016, 2019, 2022
+  - Windows 10/11 Enterprise
+  - Active Directory Group Policy Management
+-->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   revision="1.0" 
+                   schemaVersion="1.0" 
+                   xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  
+  <policyNamespaces>
+    <target prefix="pqcemail" namespace="PqcEmail.Policies.GroupPolicy" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+
+  <supersededAdm fileName="PqcEmail.adm" />
+
+  <resources minRequiredRevision="1.0" />
+
+  <categories>
+    <category name="PqcEmailRoot" displayName="$(string.PqcEmailRoot)" />
+    <category name="CryptographicPolicies" displayName="$(string.CryptographicPolicies)">
+      <parentCategory ref="PqcEmailRoot" />
+    </category>
+    <category name="DomainPolicies" displayName="$(string.DomainPolicies)">
+      <parentCategory ref="PqcEmailRoot" />
+    </category>
+    <category name="SecurityPolicies" displayName="$(string.SecurityPolicies)">
+      <parentCategory ref="PqcEmailRoot" />
+    </category>
+    <category name="AuditPolicies" displayName="$(string.AuditPolicies)">
+      <parentCategory ref="PqcEmailRoot" />
+    </category>
+  </categories>
+
+  <policies>
+    <!-- Global Cryptographic Mode Policy -->
+    <policy name="GlobalCryptographicMode" 
+            class="Machine" 
+            displayName="$(string.GlobalCryptographicMode)" 
+            explainText="$(string.GlobalCryptographicMode_Help)"
+            key="SOFTWARE\Policies\PqcEmail\Cryptographic"
+            valueName="GlobalMode">
+      <parentCategory ref="CryptographicPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Windows10" />
+      <elements>
+        <enum id="CryptographicModeDropdown" 
+              valueName="GlobalMode" 
+              required="true">
+          <item displayName="$(string.CryptoMode_Hybrid)">
+            <value>
+              <string>Hybrid</string>
+            </value>
+          </item>
+          <item displayName="$(string.CryptoMode_PostQuantumOnly)">
+            <value>
+              <string>PostQuantumOnly</string>
+            </value>
+          </item>
+          <item displayName="$(string.CryptoMode_ClassicalOnly)">
+            <value>
+              <string>ClassicalOnly</string>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <!-- Preferred Algorithms Policy -->
+    <policy name="PreferredAlgorithms" 
+            class="Machine" 
+            displayName="$(string.PreferredAlgorithms)" 
+            explainText="$(string.PreferredAlgorithms_Help)"
+            key="SOFTWARE\Policies\PqcEmail\Cryptographic">
+      <parentCategory ref="CryptographicPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Windows10" />
+      <elements>
+        <text id="PreferredKemAlgorithm" 
+              valueName="PreferredKemAlgorithm" 
+              required="true" 
+              maxLength="50" />
+        <text id="PreferredSignatureAlgorithm" 
+              valueName="PreferredSignatureAlgorithm" 
+              required="true" 
+              maxLength="50" />
+        <text id="FallbackKemAlgorithm" 
+              valueName="FallbackKemAlgorithm" 
+              required="true" 
+              maxLength="50" />
+        <text id="FallbackSignatureAlgorithm" 
+              valueName="FallbackSignatureAlgorithm" 
+              required="true" 
+              maxLength="50" />
+      </elements>
+    </policy>
+
+    <!-- Algorithm Minimum Security Levels -->
+    <policy name="MinimumSecurityLevels" 
+            class="Machine" 
+            displayName="$(string.MinimumSecurityLevels)" 
+            explainText="$(string.MinimumSecurityLevels_Help)"
+            key="SOFTWARE\Policies\PqcEmail\Security">
+      <parentCategory ref="SecurityPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Windows10" />
+      <elements>
+        <decimal id="MinimumRsaKeySize" 
+                 valueName="MinimumRsaKeySize" 
+                 minValue="2048" 
+                 maxValue="8192" 
+                 required="true" />
+        <boolean id="ProhibitWeakAlgorithms" 
+                 valueName="ProhibitWeakAlgorithms">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="RequireHardwareProtection" 
+                 valueName="RequireHardwareProtection">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <!-- Domain-Based Encryption Rules -->
+    <policy name="DomainEncryptionRules" 
+            class="Machine" 
+            displayName="$(string.DomainEncryptionRules)" 
+            explainText="$(string.DomainEncryptionRules_Help)"
+            key="SOFTWARE\Policies\PqcEmail\Domains">
+      <parentCategory ref="DomainPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Windows10" />
+      <elements>
+        <multiText id="ForcePqcDomains" 
+                   valueName="ForcePqcDomains" 
+                   required="false" 
+                   maxLength="1000" 
+                   maxStrings="100" />
+        <multiText id="ProhibitUnencryptedDomains" 
+                   valueName="ProhibitUnencryptedDomains" 
+                   required="false" 
+                   maxLength="1000" 
+                   maxStrings="100" />
+        <multiText id="AllowClassicalOnlyDomains" 
+                   valueName="AllowClassicalOnlyDomains" 
+                   required="false" 
+                   maxLength="1000" 
+                   maxStrings="100" />
+      </elements>
+    </policy>
+
+    <!-- Policy Inheritance and Overrides -->
+    <policy name="PolicyPrecedence" 
+            class="Machine" 
+            displayName="$(string.PolicyPrecedence)" 
+            explainText="$(string.PolicyPrecedence_Help)"
+            key="SOFTWARE\Policies\PqcEmail\Inheritance">
+      <parentCategory ref="DomainPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Windows10" />
+      <elements>
+        <boolean id="AllowUserOverrides" 
+                 valueName="AllowUserOverrides">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="AllowDomainOverrides" 
+                 valueName="AllowDomainOverrides">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <enum id="OverrideMode" 
+              valueName="OverrideMode">
+          <item displayName="$(string.Override_Strict)">
+            <value>
+              <string>Strict</string>
+            </value>
+          </item>
+          <item displayName="$(string.Override_Permissive)">
+            <value>
+              <string>Permissive</string>
+            </value>
+          </item>
+          <item displayName="$(string.Override_Balanced)">
+            <value>
+              <string>Balanced</string>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <!-- Fallback and Degradation Policy -->
+    <policy name="FallbackPolicy" 
+            class="Machine" 
+            displayName="$(string.FallbackPolicy)" 
+            explainText="$(string.FallbackPolicy_Help)"
+            key="SOFTWARE\Policies\PqcEmail\Fallback">
+      <parentCategory ref="SecurityPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Windows10" />
+      <elements>
+        <boolean id="AllowUnencryptedFallback" 
+                 valueName="AllowUnencryptedFallback">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <decimal id="MaxFallbackAttempts" 
+                 valueName="MaxFallbackAttempts" 
+                 minValue="1" 
+                 maxValue="10" 
+                 required="true" />
+        <decimal id="FallbackTimeoutSeconds" 
+                 valueName="FallbackTimeoutSeconds" 
+                 minValue="5" 
+                 maxValue="300" 
+                 required="true" />
+      </elements>
+    </policy>
+
+    <!-- Audit and Logging Policy -->
+    <policy name="AuditLogging" 
+            class="Machine" 
+            displayName="$(string.AuditLogging)" 
+            explainText="$(string.AuditLogging_Help)"
+            key="SOFTWARE\Policies\PqcEmail\Audit">
+      <parentCategory ref="AuditPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Windows10" />
+      <elements>
+        <boolean id="EnableDetailedLogging" 
+                 valueName="EnableDetailedLogging">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="LogPolicyDecisions" 
+                 valueName="LogPolicyDecisions">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="LogFallbackEvents" 
+                 valueName="LogFallbackEvents">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="LogSecurityViolations" 
+                 valueName="LogSecurityViolations">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <text id="CustomLogPath" 
+              valueName="CustomLogPath" 
+              required="false" 
+              maxLength="260" />
+        <enum id="LogLevel" 
+              valueName="LogLevel">
+          <item displayName="$(string.LogLevel_Error)">
+            <value>
+              <string>Error</string>
+            </value>
+          </item>
+          <item displayName="$(string.LogLevel_Warning)">
+            <value>
+              <string>Warning</string>
+            </value>
+          </item>
+          <item displayName="$(string.LogLevel_Information)">
+            <value>
+              <string>Information</string>
+            </value>
+          </item>
+          <item displayName="$(string.LogLevel_Debug)">
+            <value>
+              <string>Debug</string>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <!-- Performance and Resource Limits -->
+    <policy name="PerformanceLimits" 
+            class="Machine" 
+            displayName="$(string.PerformanceLimits)" 
+            explainText="$(string.PerformanceLimits_Help)"
+            key="SOFTWARE\Policies\PqcEmail\Performance">
+      <parentCategory ref="SecurityPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Windows10" />
+      <elements>
+        <decimal id="MaxOperationTimeMs" 
+                 valueName="MaxOperationTimeMs" 
+                 minValue="500" 
+                 maxValue="30000" 
+                 required="true" />
+        <decimal id="MaxMemoryUsageMB" 
+                 valueName="MaxMemoryUsageMB" 
+                 minValue="50" 
+                 maxValue="1000" 
+                 required="true" />
+        <decimal id="CacheExpiryMinutes" 
+                 valueName="CacheExpiryMinutes" 
+                 minValue="5" 
+                 maxValue="1440" 
+                 required="true" />
+        <boolean id="EnablePerformanceMonitoring" 
+                 valueName="EnablePerformanceMonitoring">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <!-- Certificate and Key Management Policy -->
+    <policy name="CertificatePolicy" 
+            class="Machine" 
+            displayName="$(string.CertificatePolicy)" 
+            explainText="$(string.CertificatePolicy_Help)"
+            key="SOFTWARE\Policies\PqcEmail\Certificates">
+      <parentCategory ref="SecurityPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Windows10" />
+      <elements>
+        <boolean id="RequireValidCertChain" 
+                 valueName="RequireValidCertChain">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="AllowSelfSignedCerts" 
+                 valueName="AllowSelfSignedCerts">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <decimal id="CertificateValidityDays" 
+                 valueName="CertificateValidityDays" 
+                 minValue="30" 
+                 maxValue="3650" 
+                 required="true" />
+        <multiText id="TrustedCertificateAuthorities" 
+                   valueName="TrustedCertificateAuthorities" 
+                   required="false" 
+                   maxLength="500" 
+                   maxStrings="20" />
+      </elements>
+    </policy>
+
+  </policies>
+</policyDefinitions>

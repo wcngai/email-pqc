@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  PQC Email Group Policy ADML Localization (English - United States)
+  String resources for PQC Email administrative templates
+  
+  Compatible with:
+  - Windows Server 2016, 2019, 2022
+  - Windows 10/11 Enterprise
+  - Active Directory Group Policy Management
+-->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                           revision="1.0" 
+                           schemaVersion="1.0" 
+                           xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  
+  <displayName>PQC Email Policy Definitions</displayName>
+  <description>Administrative template definitions for Post-Quantum Cryptography email encryption policies</description>
+
+  <resources>
+    <stringTable>
+      <!-- Category Names -->
+      <string id="PqcEmailRoot">PQC Email</string>
+      <string id="CryptographicPolicies">Cryptographic Settings</string>
+      <string id="DomainPolicies">Domain-Based Rules</string>
+      <string id="SecurityPolicies">Security Enforcement</string>
+      <string id="AuditPolicies">Audit and Logging</string>
+
+      <!-- Global Cryptographic Mode -->
+      <string id="GlobalCryptographicMode">Global Cryptographic Mode</string>
+      <string id="GlobalCryptographicMode_Help">
+        Configures the system-wide cryptographic mode for PQC email encryption.
+
+        If you enable this policy, you can select from the following modes:
+
+        • Hybrid: Uses both post-quantum and classical algorithms for maximum compatibility and security (recommended)
+        • Post-Quantum Only: Uses only NIST-approved post-quantum algorithms (ML-KEM-768, ML-DSA-65)
+        • Classical Only: Uses only traditional algorithms (RSA, ECDSA) for compatibility testing
+
+        If you disable or do not configure this policy, the system will use Hybrid mode as the default.
+
+        Note: This setting affects all users and domains unless overridden by more specific policies.
+
+        Registry path: HKLM\SOFTWARE\Policies\PqcEmail\Cryptographic\GlobalMode
+      </string>
+      <string id="CryptoMode_Hybrid">Hybrid (PQC + Classical)</string>
+      <string id="CryptoMode_PostQuantumOnly">Post-Quantum Only</string>
+      <string id="CryptoMode_ClassicalOnly">Classical Only</string>
+
+      <!-- Preferred Algorithms -->
+      <string id="PreferredAlgorithms">Preferred Cryptographic Algorithms</string>
+      <string id="PreferredAlgorithms_Help">
+        Specifies the preferred cryptographic algorithms for email encryption and digital signatures.
+
+        If you enable this policy, you must specify:
+
+        • Preferred KEM Algorithm: The primary key encapsulation mechanism (e.g., ML-KEM-768, RSA-OAEP-2048)
+        • Preferred Signature Algorithm: The primary digital signature algorithm (e.g., ML-DSA-65, RSA-PSS-2048)
+        • Fallback KEM Algorithm: Alternative KEM algorithm if the preferred is unavailable
+        • Fallback Signature Algorithm: Alternative signature algorithm if the preferred is unavailable
+
+        Recommended values for hybrid mode:
+        • Preferred KEM: ML-KEM-768
+        • Preferred Signature: ML-DSA-65
+        • Fallback KEM: RSA-OAEP-2048
+        • Fallback Signature: RSA-PSS-2048
+
+        If you disable or do not configure this policy, the system will use built-in defaults.
+
+        Registry path: HKLM\SOFTWARE\Policies\PqcEmail\Cryptographic
+      </string>
+
+      <!-- Minimum Security Levels -->
+      <string id="MinimumSecurityLevels">Minimum Security Levels</string>
+      <string id="MinimumSecurityLevels_Help">
+        Enforces minimum security requirements for cryptographic operations.
+
+        If you enable this policy, you can configure:
+
+        • Minimum RSA Key Size: The smallest acceptable RSA key size in bits (minimum: 2048)
+        • Prohibit Weak Algorithms: Prevents use of algorithms considered cryptographically weak
+        • Require Hardware Protection: Mandates use of hardware security modules (HSMs) when available
+
+        Security recommendations:
+        • Minimum RSA Key Size: 2048 bits (consider 4096 for high-security environments)
+        • Prohibit Weak Algorithms: Enabled (blocks MD5, SHA1, RSA &lt; 2048 bits)
+        • Require Hardware Protection: Enabled for production environments
+
+        If you disable this policy, weaker algorithms may be used for compatibility.
+
+        Registry path: HKLM\SOFTWARE\Policies\PqcEmail\Security
+      </string>
+
+      <!-- Domain Encryption Rules -->
+      <string id="DomainEncryptionRules">Domain-Based Encryption Rules</string>
+      <string id="DomainEncryptionRules_Help">
+        Configures encryption requirements and restrictions for specific domains.
+
+        If you enable this policy, you can specify:
+
+        • Force PQC Domains: Domains that must use post-quantum cryptography (one per line)
+        • Prohibit Unencrypted Domains: Domains that require encryption (reject if encryption fails)
+        • Allow Classical Only Domains: Domains permitted to use only classical algorithms
+
+        Domain patterns support wildcards:
+        • *.example.com (matches all subdomains)
+        • finance.* (matches all domains starting with "finance.")
+        • exact.domain.com (matches only the specific domain)
+
+        Examples:
+        • Force PQC: *.bank.com, *.financial.org
+        • Prohibit Unencrypted: *.internal.corp, hr.company.com
+        • Allow Classical Only: *.legacy.system
+
+        If you disable or do not configure this policy, global settings apply to all domains.
+
+        Registry path: HKLM\SOFTWARE\Policies\PqcEmail\Domains
+      </string>
+
+      <!-- Policy Precedence -->
+      <string id="PolicyPrecedence">Policy Inheritance and Overrides</string>
+      <string id="PolicyPrecedence_Help">
+        Controls how policy settings are inherited and whether users can override organizational policies.
+
+        If you enable this policy, you can configure:
+
+        • Allow User Overrides: Permits individual users to override organizational settings
+        • Allow Domain Overrides: Allows domain-specific policies to override global settings
+        • Override Mode: Controls the strictness of policy enforcement
+
+        Override Mode options:
+        • Strict: No overrides allowed, organizational policy is absolute
+        • Balanced: Limited overrides allowed for specific scenarios (recommended)
+        • Permissive: Users can override most settings except critical security requirements
+
+        Policy precedence order (highest to lowest):
+        1. User-specific overrides (if allowed)
+        2. Domain-specific policies
+        3. Organizational policies
+        4. System defaults
+
+        If you disable this policy, strict mode is enforced with no overrides allowed.
+
+        Registry path: HKLM\SOFTWARE\Policies\PqcEmail\Inheritance
+      </string>
+      <string id="Override_Strict">Strict (No overrides)</string>
+      <string id="Override_Balanced">Balanced (Limited overrides)</string>
+      <string id="Override_Permissive">Permissive (User overrides allowed)</string>
+
+      <!-- Fallback Policy -->
+      <string id="FallbackPolicy">Algorithm Fallback and Degradation</string>
+      <string id="FallbackPolicy_Help">
+        Configures fallback behavior when preferred cryptographic algorithms are unavailable.
+
+        If you enable this policy, you can configure:
+
+        • Allow Unencrypted Fallback: Permits sending unencrypted email if all encryption methods fail
+        • Max Fallback Attempts: Number of algorithm fallback attempts before failure (1-10)
+        • Fallback Timeout: Maximum time in seconds to wait for each algorithm attempt (5-300)
+
+        Fallback sequence example:
+        1. Preferred PQC algorithm (ML-KEM-768 + ML-DSA-65)
+        2. Alternative PQC algorithm (ML-KEM-1024 + ML-DSA-87)
+        3. Classical algorithms (RSA-OAEP-2048 + RSA-PSS-2048)
+        4. Unencrypted (only if explicitly allowed)
+
+        Security considerations:
+        • Allow Unencrypted Fallback: Disable for high-security environments
+        • Max Fallback Attempts: 3-5 attempts recommended
+        • Fallback Timeout: 30-60 seconds for network operations
+
+        If you disable this policy, the system will attempt all available algorithms without time limits.
+
+        Registry path: HKLM\SOFTWARE\Policies\PqcEmail\Fallback
+      </string>
+
+      <!-- Audit Logging -->
+      <string id="AuditLogging">Audit and Security Logging</string>
+      <string id="AuditLogging_Help">
+        Configures comprehensive audit logging for cryptographic operations and policy enforcement.
+
+        If you enable this policy, you can configure:
+
+        • Enable Detailed Logging: Records detailed information about all cryptographic operations
+        • Log Policy Decisions: Records all policy evaluation and enforcement decisions
+        • Log Fallback Events: Records algorithm fallback attempts and failures
+        • Log Security Violations: Records attempts to violate security policies
+        • Custom Log Path: Alternative location for log files (default: Windows Event Log)
+        • Log Level: Minimum severity level for recorded events
+
+        Log Level options:
+        • Error: Only critical errors that prevent operation
+        • Warning: Issues that may impact security or performance
+        • Information: Normal operational events and policy enforcement
+        • Debug: Detailed troubleshooting information (high volume)
+
+        Compliance considerations:
+        • Financial institutions: Enable all logging options with Information level
+        • Healthcare: Log policy decisions and security violations
+        • Government: Enable detailed logging with custom secure log path
+
+        If you disable this policy, only error events are logged to the Windows Event Log.
+
+        Registry path: HKLM\SOFTWARE\Policies\PqcEmail\Audit
+      </string>
+      <string id="LogLevel_Error">Error</string>
+      <string id="LogLevel_Warning">Warning</string>
+      <string id="LogLevel_Information">Information</string>
+      <string id="LogLevel_Debug">Debug</string>
+
+      <!-- Performance Limits -->
+      <string id="PerformanceLimits">Performance and Resource Limits</string>
+      <string id="PerformanceLimits_Help">
+        Configures performance thresholds and resource usage limits for cryptographic operations.
+
+        If you enable this policy, you can configure:
+
+        • Max Operation Time: Maximum milliseconds allowed for a single cryptographic operation
+        • Max Memory Usage: Maximum megabytes of memory the system can use for cryptographic operations
+        • Cache Expiry: Minutes to keep certificate and capability information in cache
+        • Enable Performance Monitoring: Collects and reports performance metrics
+
+        Performance recommendations:
+        • Max Operation Time: 2000ms for interactive use, 10000ms for batch operations
+        • Max Memory Usage: 100MB for workstations, 500MB for servers
+        • Cache Expiry: 60 minutes for dynamic environments, 240 minutes for stable environments
+        • Performance Monitoring: Enabled for optimization and troubleshooting
+
+        Impact of settings:
+        • Lower operation time limits may cause fallback to faster but potentially weaker algorithms
+        • Lower memory limits may reduce the number of concurrent operations
+        • Shorter cache expiry increases network traffic but ensures fresher information
+
+        If you disable this policy, the system uses built-in performance defaults (2000ms, 100MB, 60 minutes).
+
+        Registry path: HKLM\SOFTWARE\Policies\PqcEmail\Performance
+      </string>
+
+      <!-- Certificate Policy -->
+      <string id="CertificatePolicy">Certificate and Key Management</string>
+      <string id="CertificatePolicy_Help">
+        Configures certificate validation and key management policies.
+
+        If you enable this policy, you can configure:
+
+        • Require Valid Certificate Chain: Mandates complete and valid certificate chains
+        • Allow Self-Signed Certificates: Permits self-signed certificates for testing environments
+        • Certificate Validity Days: Maximum acceptable certificate age in days
+        • Trusted Certificate Authorities: List of additional trusted root CAs
+
+        Certificate validation levels:
+        • Full Validation: Requires valid chain, CRL/OCSP checking, and trusted root CA
+        • Basic Validation: Requires valid chain and trusted root CA only
+        • Permissive: Allows self-signed and expired certificates (testing only)
+
+        Security recommendations:
+        • Require Valid Certificate Chain: Enabled for production environments
+        • Allow Self-Signed Certificates: Disabled except for isolated test environments
+        • Certificate Validity Days: 365 days maximum (90 days for high-security)
+        • Trusted CAs: Include only necessary certificate authorities
+
+        If you disable this policy, the system uses default Windows certificate validation.
+
+        Registry path: HKLM\SOFTWARE\Policies\PqcEmail\Certificates
+      </string>
+
+    </stringTable>
+
+    <presentationTable>
+      <!-- Global Cryptographic Mode Presentation -->
+      <presentation id="GlobalCryptographicMode">
+        <dropdownList refId="CryptographicModeDropdown" defaultItem="0">Select cryptographic mode:</dropdownList>
+        <text>
+          Hybrid mode (recommended): Uses both post-quantum and classical algorithms for maximum security and compatibility.
+          
+          Post-Quantum Only: Uses only NIST-approved quantum-resistant algorithms.
+          
+          Classical Only: Uses traditional algorithms for compatibility testing.
+        </text>
+      </presentation>
+
+      <!-- Preferred Algorithms Presentation -->
+      <presentation id="PreferredAlgorithms">
+        <textBox refId="PreferredKemAlgorithm">
+          <label>Preferred KEM Algorithm:</label>
+          <defaultValue>ML-KEM-768</defaultValue>
+        </textBox>
+        <textBox refId="PreferredSignatureAlgorithm">
+          <label>Preferred Signature Algorithm:</label>
+          <defaultValue>ML-DSA-65</defaultValue>
+        </textBox>
+        <textBox refId="FallbackKemAlgorithm">
+          <label>Fallback KEM Algorithm:</label>
+          <defaultValue>RSA-OAEP-2048</defaultValue>
+        </textBox>
+        <textBox refId="FallbackSignatureAlgorithm">
+          <label>Fallback Signature Algorithm:</label>
+          <defaultValue>RSA-PSS-2048</defaultValue>
+        </textBox>
+      </presentation>
+
+      <!-- Minimum Security Levels Presentation -->
+      <presentation id="MinimumSecurityLevels">
+        <decimalTextBox refId="MinimumRsaKeySize" defaultValue="2048" spinStep="1024">Minimum RSA Key Size (bits):</decimalTextBox>
+        <checkBox refId="ProhibitWeakAlgorithms" defaultChecked="true">Prohibit weak algorithms (MD5, SHA1, RSA &lt; 2048)</checkBox>
+        <checkBox refId="RequireHardwareProtection">Require hardware security module (HSM) protection</checkBox>
+      </presentation>
+
+      <!-- Domain Encryption Rules Presentation -->
+      <presentation id="DomainEncryptionRules">
+        <listBox refId="ForcePqcDomains">Domains requiring post-quantum cryptography:</listBox>
+        <listBox refId="ProhibitUnencryptedDomains">Domains prohibiting unencrypted email:</listBox>
+        <listBox refId="AllowClassicalOnlyDomains">Domains allowing classical-only encryption:</listBox>
+        <text>
+          Use domain patterns with wildcards:
+          • *.example.com (all subdomains)
+          • exact.domain.com (specific domain)
+          • finance.* (domains starting with "finance")
+        </text>
+      </presentation>
+
+      <!-- Policy Precedence Presentation -->
+      <presentation id="PolicyPrecedence">
+        <checkBox refId="AllowUserOverrides">Allow users to override organizational policies</checkBox>
+        <checkBox refId="AllowDomainOverrides">Allow domain-specific policy overrides</checkBox>
+        <dropdownList refId="OverrideMode" defaultItem="1">Policy override mode:</dropdownList>
+        <text>
+          Policy precedence order (highest to lowest):
+          1. User-specific overrides (if allowed)
+          2. Domain-specific policies  
+          3. Organizational policies
+          4. System defaults
+        </text>
+      </presentation>
+
+      <!-- Fallback Policy Presentation -->
+      <presentation id="FallbackPolicy">
+        <checkBox refId="AllowUnencryptedFallback">Allow unencrypted fallback (not recommended for sensitive data)</checkBox>
+        <decimalTextBox refId="MaxFallbackAttempts" defaultValue="3" spinStep="1">Maximum fallback attempts:</decimalTextBox>
+        <decimalTextBox refId="FallbackTimeoutSeconds" defaultValue="30" spinStep="5">Fallback timeout (seconds):</decimalTextBox>
+        <text>
+          Fallback sequence: Preferred PQC → Alternative PQC → Classical → Unencrypted (if allowed)
+        </text>
+      </presentation>
+
+      <!-- Audit Logging Presentation -->
+      <presentation id="AuditLogging">
+        <checkBox refId="EnableDetailedLogging" defaultChecked="true">Enable detailed cryptographic operation logging</checkBox>
+        <checkBox refId="LogPolicyDecisions" defaultChecked="true">Log policy evaluation and enforcement decisions</checkBox>
+        <checkBox refId="LogFallbackEvents" defaultChecked="true">Log algorithm fallback attempts and failures</checkBox>
+        <checkBox refId="LogSecurityViolations" defaultChecked="true">Log security policy violations and attempts</checkBox>
+        <textBox refId="CustomLogPath">
+          <label>Custom log file path (optional):</label>
+        </textBox>
+        <dropdownList refId="LogLevel" defaultItem="2">Minimum log level:</dropdownList>
+      </presentation>
+
+      <!-- Performance Limits Presentation -->
+      <presentation id="PerformanceLimits">
+        <decimalTextBox refId="MaxOperationTimeMs" defaultValue="2000" spinStep="500">Maximum operation time (milliseconds):</decimalTextBox>
+        <decimalTextBox refId="MaxMemoryUsageMB" defaultValue="100" spinStep="50">Maximum memory usage (MB):</decimalTextBox>
+        <decimalTextBox refId="CacheExpiryMinutes" defaultValue="60" spinStep="15">Certificate cache expiry (minutes):</decimalTextBox>
+        <checkBox refId="EnablePerformanceMonitoring" defaultChecked="true">Enable performance monitoring and metrics collection</checkBox>
+      </presentation>
+
+      <!-- Certificate Policy Presentation -->
+      <presentation id="CertificatePolicy">
+        <checkBox refId="RequireValidCertChain" defaultChecked="true">Require valid certificate chain and CRL/OCSP checking</checkBox>
+        <checkBox refId="AllowSelfSignedCerts">Allow self-signed certificates (testing environments only)</checkBox>
+        <decimalTextBox refId="CertificateValidityDays" defaultValue="365" spinStep="30">Maximum certificate age (days):</decimalTextBox>
+        <listBox refId="TrustedCertificateAuthorities">Additional trusted certificate authorities:</listBox>
+        <text>
+          Enter certificate authority names or thumbprints for additional trust.
+          Production environments should minimize trusted CAs for security.
+        </text>
+      </presentation>
+
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>
